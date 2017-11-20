@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SocialPublisher</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">eu.jpereira.trainings.designpatterns.structural.decorator</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SocialPublisher (eu.jpereira.trainings.designpatterns.structural.decorator)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SocialPublisher</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/ 16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;/**
+<i>2</i>&nbsp; * Copyright 2011 Joao Miguel Pereira
+<i>3</i>&nbsp; *
+<i>4</i>&nbsp; *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<i>5</i>&nbsp; *  you may not use this file except in compliance with the License.
+<i>6</i>&nbsp; *  You may obtain a copy of the License at
+<i>7</i>&nbsp; *
+<i>8</i>&nbsp; *      http://www.apache.org/licenses/LICENSE-2.0
+<i>9</i>&nbsp; *
+<i>10</i>&nbsp; *  Unless required by applicable law or agreed to in writing, software
+<i>11</i>&nbsp; *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<i>12</i>&nbsp; *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<i>13</i>&nbsp; *  See the License for the specific language governing permissions and
+<i>14</i>&nbsp; *  limitations under the License.
+<i>15</i>&nbsp; */
+<i>16</i>&nbsp;package eu.jpereira.trainings.designpatterns.structural.decorator;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;import java.util.ArrayList;
+<i>19</i>&nbsp;import java.util.List;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;import eu.jpereira.trainings.designpatterns.structural.decorator.channel.SocialChannel;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;/**
+<i>24</i>&nbsp; * @author jpereira
+<i>25</i>&nbsp; * 
+<i>26</i>&nbsp; */
+<i>27</i>&nbsp;public class SocialPublisher {
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;	private List&lt;SocialChannel&gt; channels;
+<i>30</i>&nbsp;
+<b class="fc"><i>31</i>&nbsp;	public SocialPublisher() {</b>
+<b class="fc"><i>32</i>&nbsp;		this.channels = createSocialChannelList();</b>
+<b class="fc"><i>33</i>&nbsp;	}</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;	/**
+<i>36</i>&nbsp;	 * @param textMessage
+<i>37</i>&nbsp;	 */
+<i>38</i>&nbsp;	public void publish(String textMessage) {
+<i>39</i>&nbsp;		//For each channels, deliver the message
+<b class="fc"><i>40</i>&nbsp;		for (SocialChannel channel : this.channels ) {</b>
+<b class="fc"><i>41</i>&nbsp;			channel.deliverMessage(textMessage);</b>
+<b class="fc"><i>42</i>&nbsp;		}</b>
+<i>43</i>&nbsp;
+<b class="fc"><i>44</i>&nbsp;	}</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;	/**
+<i>47</i>&nbsp;	 * @return
+<i>48</i>&nbsp;	 */
+<i>49</i>&nbsp;	public int getSocialChannelsCount() {
+<b class="fc"><i>50</i>&nbsp;		return this.channels.size();</b>
+<i>51</i>&nbsp;	}
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;	/**
+<i>54</i>&nbsp;	 * @param channel
+<i>55</i>&nbsp;	 */
+<i>56</i>&nbsp;	public void addSocialChannel(SocialChannel channel) {
+<b class="fc"><i>57</i>&nbsp;		this.channels.add(channel);</b>
+<b class="fc"><i>58</i>&nbsp;	}</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;	/**
+<i>61</i>&nbsp;	 * Factory method
+<i>62</i>&nbsp;	 * 
+<i>63</i>&nbsp;	 * @return
+<i>64</i>&nbsp;	 */
+<i>65</i>&nbsp;	protected List&lt;SocialChannel&gt; createSocialChannelList() {
+<i>66</i>&nbsp;
+<b class="fc"><i>67</i>&nbsp;		return new ArrayList&lt;SocialChannel&gt;();</b>
+<i>68</i>&nbsp;	}
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;	/**
+<i>71</i>&nbsp;	 * @param channel
+<i>72</i>&nbsp;	 * @return
+<i>73</i>&nbsp;	 */
+<i>74</i>&nbsp;	public boolean removeChannel(SocialChannel channel) {
+<b class="fc"><i>75</i>&nbsp;		boolean removed = false;</b>
+<b class="fc"><i>76</i>&nbsp;		if (this.channels.contains(channel)) {</b>
+<b class="fc"><i>77</i>&nbsp;			this.channels.remove(channel);</b>
+<b class="fc"><i>78</i>&nbsp;			removed = true;</b>
+<i>79</i>&nbsp;		}
+<b class="fc"><i>80</i>&nbsp;		return removed;</b>
+<i>81</i>&nbsp;	}
+<i>82</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-11-19 15:45</div>
+</div>
+</body>
+</html>
